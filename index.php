@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
 <body>
   <div class="container">
     <h2>Blood Alcohol Concentration Calculator</h2>
-    <form action="calculate_bac.php" method="POST">
+    <form action="calculate_bac.php" method="GET">
       <label for="weight">Weight:</label>
       <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
 
@@ -43,7 +44,8 @@
     </form>
 
     <div class="output-wrapper">
-      <div> Your Blood Concentration is: <span>0.08%</span></div>
+      <div> Your Blood Concentration is: <span><?= session_start();$BAC = 0;
+$BAC = $_SESSION['BAC']; echo $BAC;?></span></div>
       <div> Safe to drive </div>
     </div>
   </div>
