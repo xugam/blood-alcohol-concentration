@@ -1,4 +1,7 @@
-
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,13 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blood Alcohol Calculator</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
   <div class="container">
     <h2>Blood Alcohol Concentration Calculator</h2>
-    <form action="calculate_bac.php" method="GET">
+    <form action="calculate_bac.php" method="post">
       <label for="weight">Weight:</label>
       <input type="number" id="weight" name="weight" placeholder="Enter your weight" required>
 
@@ -44,9 +46,17 @@
     </form>
 
     <div class="output-wrapper">
-      <div> Your Blood Concentration is: <span><?= session_start();$BAC = 0;
-$BAC = $_SESSION['BAC']; echo $BAC;?></span></div>
-      <div> Safe to drive </div>
+      <div> Your Blood Concentration is: <?php 
+      $BAC = $_SESSION['BAC'];
+      echo $BAC;
+      
+      ?><span></div>
+      <div><?php if($BAC<=0.08){
+        echo "Safe to Drive";
+       
+    }else{
+       echo "Unsafe to Drive";
+    }?></span></div>
     </div>
   </div>
 </body>
